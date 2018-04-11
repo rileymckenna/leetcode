@@ -12,7 +12,7 @@ namespace leetcode
         static void Main(string[] args)
         {
             //int[] nums1 = new int[] { };
-            //int[] nums2 = new int[] { 1,2,3,4 };
+            int[] nums2 = new int[] { 2,1 };
             //double mean = FindMedianSortedArrays(nums1, nums2);
             //System.Console.WriteLine("Mean:" + mean);
             //TreeNode tree = new TreeNode(9);
@@ -21,19 +21,21 @@ namespace leetcode
             //System.Console.WriteLine(MaxDepth(tree));
             //int[] arr = new int[] { 0,1, 2, 0, 3, 0, 5, 7, 0, 9 };
             //MoveZeroes(arr);
-            ListNode ln = new ListNode(1);
-            ln.add(ln, new ListNode(6));
-            ln.add(ln.next, new ListNode(2));
-            ln.add(ln.next.next, new ListNode(3));
-            ln.add(ln.next.next.next, new ListNode(4));
-            ln.add(ln.next.next.next.next, new ListNode(6));
-            ln = RemoveElements(ln, 6);
-            System.Console.WriteLine(ln.val);
-            System.Console.WriteLine(ln.next.val);
-            System.Console.WriteLine(ln.next.next.val);
-            System.Console.WriteLine(ln.next.next.next.val);
+            //ListNode ln = new ListNode(1);
+            //ln.add(ln, new ListNode(6));
+            //ln.add(ln.next, new ListNode(2));
+            //ln.add(ln.next.next, new ListNode(3));
+            //ln.add(ln.next.next.next, new ListNode(4));
+            //ln.add(ln.next.next.next.next, new ListNode(6));
+            //ln = RemoveElements(ln, 6);
+            //System.Console.WriteLine(ln.val);
+            //System.Console.WriteLine(ln.next.val);
+            //System.Console.WriteLine(ln.next.next.val);
+            //System.Console.WriteLine(ln.next.next.next.val);
             //System.Console.WriteLine(ln.next.next.next.next.val);
-           // System.Console.WriteLine(ln.next.next.next.next.next.val);
+            // System.Console.WriteLine(ln.next.next.next.next.next.val);
+            MaxProfit(nums2);
+
 
 
         }
@@ -206,23 +208,14 @@ namespace leetcode
         }
         public int GetSum(int a, int b)
         {
-            return Math.(a, b);
+            return a+b;
         }
-        public int MaxProfit(int[] prices)
+        public static int MaxProfit(int[] prices)
         {
-            int curprofit = 0;
-            int futureProfit = 0;
-            foreach(int buy in prices)
-            {
-                foreach(int sell in prices)
-                {
-                    if (futureProfit >= curprofit) {
-                        futureProfit = sell - buy;
-                        curprofit = futureProfit;
-                    }
-                }
-            }
-            return curprofit;
+            int ret = 0;
+            for (int p = 1; p < prices.Length; ++p)
+                ret += Math.Max(prices[p] - prices[p - 1], 0);
+            return ret;
         }
     }
 }

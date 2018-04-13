@@ -22,13 +22,15 @@ namespace leetcode
             //int[] arr = new int[] { 0,1, 2, 0, 3, 0, 5, 7, 0, 9 };
             //MoveZeroes(arr);
             ListNode ln = new ListNode(1);
-            ln.add(ln, new ListNode(6));
-            ln.add(ln.next, new ListNode(2));
-            ln.add(ln.next.next, new ListNode(3));
-            ln.add(ln.next.next.next, new ListNode(4));
-            ln.add(ln.next.next.next.next, new ListNode(6));
-            ListNode ln1 = ReverseList(null);
+            ln.add(ln, new ListNode(2));
+            ln.add(ln.next, new ListNode(4));
+            ListNode ln2 = new ListNode(1);
+            ln2.add(ln2, new ListNode(3));
+            ln2.add(ln2.next, new ListNode(4));
+            //ln.add(ln.next.next.next.next, new ListNode(6));
+            //ListNode ln1 = ReverseList(null);
             //ln = RemoveElements(ln, 6);
+            ListNode ln1 = MergeTwoLists(ln, ln2);
             System.Console.WriteLine(ln1.val);
             System.Console.WriteLine(ln1.next.val);
             System.Console.WriteLine(ln1.next.next.val);
@@ -231,6 +233,30 @@ namespace leetcode
                 head.next = null;
                 return newHead;
             }
+        }
+
+        public static ListNode MergeTwoLists(ListNode l1, ListNode l2)
+        {
+            ListNode newHead;
+            if (l1 == null)
+            {
+                return l2;
+            }
+            if (l2 == null)
+            {
+                return l1;
+            }
+            if (l1.val < l2.val)
+            {
+                newHead = l1;
+                newHead.next = MergeTwoLists(l1.next, l2);
+            }
+            else
+            {
+                newHead = l2;
+                newHead.next = MergeTwoLists(l1, l2.next);
+            }
+            return newHead;
         }
     }
 }

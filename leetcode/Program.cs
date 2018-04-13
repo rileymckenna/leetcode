@@ -21,20 +21,21 @@ namespace leetcode
             //System.Console.WriteLine(MaxDepth(tree));
             //int[] arr = new int[] { 0,1, 2, 0, 3, 0, 5, 7, 0, 9 };
             //MoveZeroes(arr);
-            //ListNode ln = new ListNode(1);
-            //ln.add(ln, new ListNode(6));
-            //ln.add(ln.next, new ListNode(2));
-            //ln.add(ln.next.next, new ListNode(3));
-            //ln.add(ln.next.next.next, new ListNode(4));
-            //ln.add(ln.next.next.next.next, new ListNode(6));
+            ListNode ln = new ListNode(1);
+            ln.add(ln, new ListNode(6));
+            ln.add(ln.next, new ListNode(2));
+            ln.add(ln.next.next, new ListNode(3));
+            ln.add(ln.next.next.next, new ListNode(4));
+            ln.add(ln.next.next.next.next, new ListNode(6));
+            ListNode ln1 = ReverseList(null);
             //ln = RemoveElements(ln, 6);
-            //System.Console.WriteLine(ln.val);
-            //System.Console.WriteLine(ln.next.val);
-            //System.Console.WriteLine(ln.next.next.val);
-            //System.Console.WriteLine(ln.next.next.next.val);
-            //System.Console.WriteLine(ln.next.next.next.next.val);
-            // System.Console.WriteLine(ln.next.next.next.next.next.val);
-            MaxProfit(nums2);
+            System.Console.WriteLine(ln1.val);
+            System.Console.WriteLine(ln1.next.val);
+            System.Console.WriteLine(ln1.next.next.val);
+            System.Console.WriteLine(ln1.next.next.next.val);
+            System.Console.WriteLine(ln1.next.next.next.next.val);
+            System.Console.WriteLine(ln1.next.next.next.next.next.val);
+            //MaxProfit(nums2);
 
 
 
@@ -216,6 +217,20 @@ namespace leetcode
             for (int p = 1; p < prices.Length; ++p)
                 ret += Math.Max(prices[p] - prices[p - 1], 0);
             return ret;
+        }
+
+        public static ListNode ReverseList(ListNode head)
+        {
+            ListNode newHead;
+            if ( head == null || head.next == null)
+            { return head; }
+            else
+            {
+                newHead = ReverseList(head.next);
+                head.next.next = head;
+                head.next = null;
+                return newHead;
+            }
         }
     }
 }

@@ -12,7 +12,7 @@ namespace leetcode
         static void Main(string[] args)
         {
             //int[] nums1 = new int[] { };
-            int[] nums2 = new int[] { 2,1 };
+            int[] nums2 = new int[] { 2, 1 };
             //double mean = FindMedianSortedArrays(nums1, nums2);
             //System.Console.WriteLine("Mean:" + mean);
             //TreeNode tree = new TreeNode(9);
@@ -21,24 +21,24 @@ namespace leetcode
             //System.Console.WriteLine(MaxDepth(tree));
             //int[] arr = new int[] { 0,1, 2, 0, 3, 0, 5, 7, 0, 9 };
             //MoveZeroes(arr);
-            ListNode ln = new ListNode(1);
-            ln.add(ln, new ListNode(2));
-            ln.add(ln.next, new ListNode(4));
-            ListNode ln2 = new ListNode(1);
-            ln2.add(ln2, new ListNode(3));
-            ln2.add(ln2.next, new ListNode(4));
-            //ln.add(ln.next.next.next.next, new ListNode(6));
-            //ListNode ln1 = ReverseList(null);
-            //ln = RemoveElements(ln, 6);
-            ListNode ln1 = MergeTwoLists(ln, ln2);
-            System.Console.WriteLine(ln1.val);
-            System.Console.WriteLine(ln1.next.val);
-            System.Console.WriteLine(ln1.next.next.val);
-            System.Console.WriteLine(ln1.next.next.next.val);
-            System.Console.WriteLine(ln1.next.next.next.next.val);
-            System.Console.WriteLine(ln1.next.next.next.next.next.val);
+            //ListNode ln = new ListNode(1);
+            //ln.add(ln, new ListNode(2));
+            //ln.add(ln.next, new ListNode(4));
+            //ListNode ln2 = new ListNode(1);
+            //ln2.add(ln2, new ListNode(3));
+            //ln2.add(ln2.next, new ListNode(4));
+            ////ln.add(ln.next.next.next.next, new ListNode(6));
+            ////ListNode ln1 = ReverseList(null);
+            ////ln = RemoveElements(ln, 6);
+            //ListNode ln1 = MergeTwoLists(ln, ln2);
+            //System.Console.WriteLine(ln1.val);
+            //System.Console.WriteLine(ln1.next.val);
+            //System.Console.WriteLine(ln1.next.next.val);
+            //System.Console.WriteLine(ln1.next.next.next.val);
+            //System.Console.WriteLine(ln1.next.next.next.next.val);
+            //System.Console.WriteLine(ln1.next.next.next.next.next.val);
             //MaxProfit(nums2);
-
+            System.Console.WriteLine(CountBattleships(new char[,] {{'X', '.', '.', 'X'},{'.', '.', '.', 'X'},{'.', '.', '.', 'X'} }));
 
 
         }
@@ -258,7 +258,84 @@ namespace leetcode
             }
             return newHead;
         }
+        public static int Rob(int[] nums)
+        {
+            int routea = 0;
+            int routeb = 0;
+            for(int i = 0; i < nums.Length; i++)
+            {
+                if (nums.Length < 2)
+                {
+                    return nums[i];
+                }
+                if (i % 2 == 0)
+                {
+                    routea += max(nums[i], routeb);
+                }
+                else
+                {
+                    routeb += max(nums[i], routea);
+                }
+            }
+            return max(routea, routeb);
+        }
+        public static int max(int x, int y)
+        {
+            if (x > y)
+            {
+                return x;
+            }
+            return y;
+        }
+        public int NumJewelsInStones(string J, string S)
+        {
+            int jewelcount = 0;
+            foreach(char j in J)
+            {
+                foreach(char s in S)
+                {
+                    if (j == s)
+                    {
+                        jewelcount++;
+                    }
+                }
+            }
+            return jewelcount;
+        }
 
-        
-    }
+        public static int[] AnagramMappings(int[] A, int[] B)
+        {
+            int[] p = new int[A.Length];
+            for (int i = 0; i < A.Length; i++)
+            {
+                for (int j = 0; j < B.Length; j++)
+                {
+                    if (A[i] == B[j])
+                    {
+                        p[i] = j;
+                    }
+                }
+            }
+            return p;
+        }
+        public static int CountBattleships(char[,] board)
+        {
+
+            var count = 0;
+
+            for (int i = 0; i < board.GetLength(0); i++)
+            {
+                for (int j = 0; j < board.GetLength(1); j++)
+                {
+                    if (board[i, j] != 'X') continue;
+                    if (i > 0 && board[i - 1, j] == 'X') continue;
+                    if (j > 0 && board[i, j - 1] == 'X') continue;
+
+                    count++;
+                }
+            }
+
+            return count;
+        }
+    }  
 }

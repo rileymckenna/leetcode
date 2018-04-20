@@ -1,4 +1,6 @@
 ﻿
+using static leetcode.Solution;
+
 namespace leetcode
 {
     class Program
@@ -9,11 +11,12 @@ namespace leetcode
             int[] nums2 = new int[] { 2, 1 };
             //double mean = FindMedianSortedArrays(nums1, nums2);
             //System.Console.WriteLine("Mean:" + mean);
-            //TreeNode tree = new TreeNode(9);
-            //TreeNode rb = new TreeNode(6);
-            //tree.add(tree, new TreeNode(3), rb.add(rb, new TreeNode(12), new TreeNode(13)));
+            TreeNode tree = new TreeNode(1);
+            TreeNode rb = new TreeNode(2);
+            TreeNode lb = new TreeNode(5);
+            tree.add(tree, rb.add(rb, new TreeNode(3), new TreeNode(4)), lb.add(lb, null, new TreeNode(6)));
             //System.Console.WriteLine(MaxDepth(tree));
-            //int[] arr = new int[] { 0,1, 2, 0, 3, 0, 5, 7, 0, 9 };
+            int[] arr = new int[] { 2, 0, 2, 1, 1, 0 };
             //MoveZeroes(arr);
             //ListNode ln = new ListNode(1);
             //ln.add(ln, new ListNode(2));
@@ -37,7 +40,9 @@ namespace leetcode
             linkedList.Append(4);
             linkedList.Append(5);
             linkedList.Append(2);
-            System.Console.Write(linkedList.RemoveDuplicates(linkedList));
+            Solution.FirstUniqChar("asdfhahpquewnlaksndf");
+            foreach(int i in ListFibonacci(12)) { System.Console.Write(i); }
+            
         }
     }  
 }

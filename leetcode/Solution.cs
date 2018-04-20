@@ -335,5 +335,139 @@ namespace leetcode
             int now = 0;
             return 0;
         }
+        public static void SortColors(int[] nums)
+        {
+            int[] hash = new int[256];
+            foreach (int n in nums)
+            {
+                if (n == 0)
+                {
+                    hash['r']++;
+                }else if (n == 1)
+                {
+                    hash['w']++;
+                }else
+                { hash['b']++;
+                }
+            }
+            int i = 0;
+            while(hash['r']-- > 0) { nums[i++] = 0; }
+            while (hash['w']-- > 0) { nums[i++] = 1; }
+            while (hash['b']-- > 0) { nums[i++] = 2; }
+        }
+        private static TreeNode tempNode = null;
+        public static void Flatten(TreeNode root)
+        {
+            
+            if (root == null)
+            {
+                return;
+            }
+            Flatten(root.right);
+            Flatten(root.left);
+            root.right = tempNode;
+            root.left = null;
+            tempNode = root;
+        }
+
+        public static int FirstUniqChar(string s)
+        {
+            int[] hash = new int[256];
+            for (int i = 0; i < s.Length; i++)
+            {
+                hash[s[i]]++;
+            }
+            for(int j = 0; j < s.Length; j++)
+            {
+                if (hash[s[j]] == 1)
+                {
+                    return j;
+                }
+            }
+            return -1;
+        }
+        public static int FindKthLargest(int[] nums, int k)
+        {
+            Array array = nums;
+            Array.Sort(array);
+            Array.Reverse(array);
+            return (int)array.GetValue(k-1);
+
+        }
+        public ListNode GetIntersectionNode(ListNode headA, ListNode headB)
+        {
+            if (headA == null || headB ==null)
+            {
+                return null;
+            }
+
+            ListNode a = headA;
+            ListNode b = headB;
+
+            if(a.next == b.next)
+            {
+                return a;
+            }
+            else
+            {
+                 a = GetIntersectionNode(headB.next, headA.next);
+            }
+            return a;
+        }
+
+        public IList<string> FizzBuzz1(int n)
+        {
+            List<string> vs = new List<string>();
+            List<int> list = new List<int>();
+            string f = "Fizz";
+            string b = "Buzz";
+            for(int i = 0; i < n; i++)
+            {
+                list.Add(i);
+            }
+            foreach(int li in list)
+            {
+                if (li % 3 == 0)
+                {
+                    vs.Add(f);
+                }
+                else if (li % 5 == 0)
+                {
+                    vs.Add(b);
+                }
+                else if (li % 3 == 0 & li % 5 == 0)
+                {
+                    vs.Add(f + b);
+                }
+                else
+                {
+                    vs.Add((li).ToString());
+                }
+            }
+            return vs;
+        }
+
+        public static int Fibonacci(int n)
+        {
+            if (n == 0)
+            {
+                return 0;
+            }else if (n == 1)
+            {
+                return 1;
+            }
+            else { return Fibonacci(n - 1) + Fibonacci(n-2); }
+        }
+        public static Array ListFibonacci(int n)
+        {
+            Array fiblist = new int[n];
+            for (int i = 0; i < n; i++)
+            {
+                fiblist.SetValue(Fibonacci(n-i),i);
+            }
+            Array.Reverse(fiblist);
+            return fiblist;
+            
+        }
     }
 }
